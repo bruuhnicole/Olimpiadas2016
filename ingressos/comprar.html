@@ -8,6 +8,7 @@
     <!-- CSS  -->
     <link href="../style/plugin-min.css" type="text/css" rel="stylesheet">
     <link href="../style/custom-min.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body id="top" class="scrollspy">
     <!-- Pre Loader -->
@@ -18,7 +19,7 @@
         <div class="loader-section section-right"></div>
 
     </div>
-    <!--Historia-->
+    <!--Menu-->
     <div class="navbar-fixed">
         <nav id="nav_f" class="default_color" role="navigation">
             <div class="container">
@@ -28,13 +29,13 @@
                         <li><a href="#modalidade">Modalidades</a></li>
                         <li><a href="#calendario">Calendário</a></li>
                         <li><a href="#bh">Belo Horizonte</a></li>
-                        <li><a style="background-color:green;" href="./usuario/login.html">Login</a></li>
+                        <li><a style="background-color:green;" href="./usuario/login.html#login">Login</a></li>
                     </ul>
                     <ul id="nav-mobile" class="side-nav">
                         <li><a href="#modalidade">Modalidades</a></li>
                         <li><a href="#calendario">Calendário</a></li>
                         <li><a href="#bh">Belo Horizonte</a></li>
-                        <li><a style="background-color:green;" href="./usuario/login.html">Login</a></li>
+                        <li><a style="background-color:green;" href="./usuario/login.html#login">Login</a></li>
                     </ul>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 </div>
@@ -49,40 +50,38 @@
             </h1>
         </div>
     </div>
-    <!--Hoteis-->
-    <div id="hoteis" class="section scrollspy">
-      <div class="container">
+    
+    <div class="container">
+        <h2 class="header text_b">Ingressos Olimpíadas Rio 2016</h2>
         <div class="row">
-          <div class="col s12">
-            <div>
-              <h3>Hotéis</h3><br>
-              <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/hotel-impar.JPEG">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Ímpar Suítes Expominas<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>Com localização privilegiada, situado na região oeste da capital mineira, o Ímpar Suítes Expominas visa atender a crescente demanda local. O novo hotel Ímpar se encontra a apenas 1KM do maior espaço para convenções, feiras congressos e turismo em geral de MG, o Centro de Convenções Expominas.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/hotel-ramada.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Hotel Ramada Minas Casa<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>Ramada Encore Minascasa está localizado em Belo Horizonte e oferece quartos modernos com WiFi gratuito. Há um bar no local e o restaurante do Ramada serve refeições à la carte ou buffet. No Ramada Encore, você pode saborear diariamente o buffet de café da manhã com frutas da estação, sucos naturais e pães.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+            <h4 class="promo-caption">07 de Agosto</h4><br>
+            <h5 class="promo-caption"><b>Vôlei de Praia</b></h5><br>
+            <p class="promo-caption"><b>Local:</b> Arena de Vôlei Praia</p>
+            <p class="promo-caption"><b>Horário:</b> Arena de Vôlei Praia</p>
+            <p class="promo-caption"><b>Eventos:</b> Fase de grupos masculina e/ou feminina (4 jogos)</p>
+            <p class="promo-caption"><b>Preço:</b> R$ 120</p>
         </div>
-      </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input placeholder="Quantidade" id="first_name" type="number" class="validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input disabled value="R$ 00,00" id="disabled" type="text" class="validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Comprar
+                        <i class="material-icons right">shopping_cart</i>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
+
     <!--Footer-->
     <footer id="contato" class="page-footer default_color scrollspy">
         <div class="container">
@@ -101,6 +100,5 @@
             </div>
         </div>
     </footer>
-  </body>
+</body>
 </html>
-
