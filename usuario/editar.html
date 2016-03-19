@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#00e579">
+    <title>Olimpíadas 2016</title>
+    <!-- CSS  -->
+    <link href="../style/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="../style/custom-min.css" type="text/css" rel="stylesheet">
+</head>
+<body id="top" class="scrollspy">
+    <!-- Pre Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!--Navigation-->
+    <div class="navbar-fixed">
+        <nav id="nav_f" class="default_color" role="navigation">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <a href="#" id="logo-container" class="brand-logo">Olimpíadas 2016</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#modalidade">Modalidades</a></li>
+                        <li><a href="#calendario">Calendário</a></li>
+                        <li><a href="#bh">Belo Horizonte</a></li>
+                    </ul>
+                    <ul id="nav-mobile" class="side-nav">
+                        <li><a href="#modalidade">Modalidades</a></li>
+                        <li><a href="#calendario">Calendário</a></li>
+                        <li><a href="#bh">Belo Horizonte</a></li>
+                    </ul>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--Hero-->
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h1 class="text_h center header cd-headline letters type">
+                <span>Olimpíadas - Rio 2016</span>
+            </h1>
+        </div>
+    </div>
+    <!--Intro and service-->
+    <div id="cadastrar" class="section scrollspy">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div>
+                        <h1>Editar Dados Pessoais</h1>
+                        <form>
+                            <fieldset>
+                                <legend>Modifique seus dados:</legend>
+                                <label>Nome Completo</label>
+                                <input type="text" name="nome" placeholder="Nome Completo..." required size="50px">
+
+                                <label>CPF</label>
+                                <input type="text" name="cpf" maxlength="14" value="123.456.789-09" size="15px" required disabled>
+
+                                <label>Data de Nascimento</label>
+                                <input type="date" name="data" maxlenght="10" placeholder="XX/XX/XXXX" size="10px" required>
+
+                                <label>Logradouro</label>
+                                <input type="text" name="logradouro" placeholder="Av., Rua..." size="60px" required>
+
+                                <label>Nº</label>
+                                <input type="text" name="num" placeholder="Nº..." required size="2px">
+
+                                <label>Bairro</label>
+                                <input type="text" name="bairro" placeholder="Bairro..." required size="30px">
+
+                                <label>Cidade</label>
+                                <input type="text" name="cidade" placeholder="Cidade..." required size="25px">
+
+                                <label>Estado</label>
+                                <input class="select-dropdown" value="MG" type="text">
+                                <ul style="width: 330px; position: absolute; top: 0px; left: 0px; opacity: 1; display: none;" id="opcoes" class="dropdown-content select-dropdown">
+                                    <li>
+                                        <span>AC</span>
+                                    </li>
+                                    <li class="">
+                                        <span>AC</span>
+                                    </li>
+                                    <li class="">
+                                        <span>MG</span>
+                                    </li>
+                                    <li class="">
+                                        <span>SP</span>
+                                    </li>
+                                </ul>
+                                <label>E-mail</label>
+                                <input type="email" name="email" placeholder="nome@nome.com" required size="50px"><br><br>
+                                <input type="submit" value="Salvar">
+                            </fieldset>
+                        </form>
+                        <form>
+                            <fieldset>
+                                <legend>Trocar Senha:</legend>
+                                <label>Senha Antiga</label>
+                                <input type="password" name="senha_old" maxlength="6" placeholder="Senha Antiga..." required="" size="15px">
+
+                                <label>Senha</label>
+                                <input type="password" name="senha_new" maxlength="6" placeholder="Senha Nova..." required="" size="15px"><br><br>
+                                <input type="submit" value="Alterar Senha">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Footer-->
+    <footer id="contato" class="page-footer default_color scrollspy">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h5 class="white-text">Social</h5>
+                    <a class="white-text" href="https://www.behance.net/joashp">
+                        <i class="small fa fa-behance-square white-text"></i> Behance
+                    </a>
+                    <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
+                        <i class="small fa fa-facebook-square white-text"></i> Facebook
+                    </a>
+                    <a class="white-text" href="https://github.com/joashp">
+                        <i class="small fa fa-github-square white-text"></i> Github
+                    </a>
+                    <a class="white-text" href="https://www.linkedin.com/in/joashp">
+                        <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright default_color">
+            <div class="container">
+                Made by <a class="white-text" href="http://joashpereira.com">Joash Pereira</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

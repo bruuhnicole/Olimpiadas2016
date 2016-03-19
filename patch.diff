@@ -1,0 +1,14 @@
+diff --git a/faq.php b/faq.php
+index e1e5a6d..f75a155 100644
+--- a/faq.php
++++ b/faq.php
+@@ -3,6 +3,8 @@ $cabecalho_title = "título da pagina";
+ include("include/cabecalho.php"); 
+ ?>
+ 
+-<!-- conteúdo da página -->
++<div>
++<input type="checkbox">
++</div>
+ 
+ <?php include("include/rodape.php"); ?>
