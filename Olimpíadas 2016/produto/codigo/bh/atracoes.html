@@ -1,117 +1,165 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#00e579">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Olimpíadas 2016</title>
-    <!-- CSS  -->
-    <link href="../style/plugin-min.css" type="text/css" rel="stylesheet">
-    <link href="../style/custom-min.css" type="text/css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../style/stylish-portfolio.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body id="top" class="scrollspy">
-    <!-- Pre Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
-    <!--Historia-->
-    <div class="navbar-fixed">
-        <nav id="nav_f" class="default_color" role="navigation">
-            <div class="container">
-                <div class="nav-wrapper">
-                    <a href="#" id="logo-container" class="brand-logo">Olimpíadas 2016</a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="#modalidade">Modalidades</a></li>
-                        <li><a href="#calendario">Calendário</a></li>
-                        <li><a href="#bh">Belo Horizonte</a></li>
-                        <li><a style="background-color:green;" href="./usuario/login.html">Login</a></li>
-                    </ul>
-                    <ul id="nav-mobile" class="side-nav">
-                        <li><a href="#modalidade">Modalidades</a></li>
-                        <li><a href="#calendario">Calendário</a></li>
-                        <li><a href="#bh">Belo Horizonte</a></li>
-                        <li><a style="background-color:green;" href="./usuario/login.html">Login</a></li>
-                    </ul>
-                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <!--Inicio-->
-    <div class="section no-pad-bot" id="index-banner">
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <h1 class="text_h center header cd-headline letters type">
-                <span>Olimpíadas - Rio 2016</span>
-            </h1>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Olimpíadas 2016</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#modalidade">Modalidades</a></li>
+                    <li><a href="#calendario">Calendário</a></li>
+                    <li><a href="#bh">BH</a></li>
+                    <li><a style="background-color:lightseagreen;" href="./login.html#login">Login</a></li>
+                    <li><a style="background-color:lightblue;" href="./faq.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-    </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1 style="color:white;text-shadow: 2px -2px 10px lime;">Olimpíadas 2016</h1>
+        </div>
+    </header>
     <!--Atracoes-->
     <div id="atracoes" class="section scrollspy">
-      <div class="container">
-        <div class="row">
-          <div class="col s12">
-            <div>
-              <h3>Atrações</h3><br>
-              <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/atracao.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Palácio das Artes<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>O Palácio das Artes é um complexo cultural que fomenta e difunde a arte e a cultura e proporciona uma multiplicidade de experiências para o público visitante. Localizado na Av. Afonso Pena, na região central de Belo Horizonte, e ladeado pela biodiversidade do Parque Municipal, é um dos raros espaços no país e na América Latina que reúne, num mesmo local, diversos equipamentos culturais: Grande Teatro, Teatro João Ceschiatti, Sala Juvenal Dias, Cine Humberto Mauro Grande Galeria Alberto da Veiga Guignard, Galeria Genesco Murta, Galeria Arlinda Corrêa Lima e Espaço Mari’Stella Tristão.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/museu.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Museu de Arte e Ofício<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>O Museu de Artes e Ofícios é um museu brasileiro localizado na cidade de Belo Horizonte. Inaugurado em 14 de dezembro de 2005, é o primeiro empreendimento museológico brasileiro dedicado integralmente ao tema do trabalho, das artes e ofícios no país. Com 9.000 m² de área, o museu está instalado no conjunto histórico da antiga Estação Central da Estrada de Ferro Central do Brasil, na Praça Rui Barbosa, mais conhecida como Praça da Estação. No mesmo local funcionam ainda hoje uma estação de metrô e um ramal ferroviário. É um dos museus mais bem estruturados do Brasil em termos de organização, estrutura para as exposições e uso de recursos audiovisuais.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m4 l4">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="../images/igrejinha.jpg">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">Igrejinha da Pampulha<i class="mdi-navigation-more-vert right"></i></span>
-                            <p>Uma das principais atrações do conjunto arquitetônico e urbanístico da Pampulha, a Igreja São Francisco de Assis, emoldurada pelas águas da lagoa, reúne as genialidades do arquiteto Oscar Niemeyer, do paisagista Burle Marx e do pintor Cândido Portinari. A combinação gerou a construção em tons azuis, com linhas e curvas totalmente revestida por azulejos e pelos painéis que retratam a Via Sacra e a imagem de São Francisco.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Footer-->
-    <footer id="contato" class="page-footer default_color scrollspy">
         <div class="container">
             <div class="row">
-                <div>
-                    <h5 class="white-text">Curta nossa página no Facebook</h5>
-                    <a class="white-text" href="https://www.facebook.com/rio2016pt">
-                        <i class="small fa fa-facebook-square white-text"></i> Facebook
-                    </a>
+                <div class="col s12">
+                    <div>
+                        <h3>Atrações</h3><br>
+                        <div class=".col-md-4">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="../images/atracao.jpg">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">Palácio das Artes<i class="mdi-navigation-more-vert right"></i></span>
+                                    <p>O Palácio das Artes é um complexo cultural que fomenta e difunde a arte e a cultura e proporciona uma multiplicidade de experiências para o público visitante. Localizado na Av. Afonso Pena, na região central de Belo Horizonte, e ladeado pela biodiversidade do Parque Municipal, é um dos raros espaços no país e na América Latina que reúne, num mesmo local, diversos equipamentos culturais: Grande Teatro, Teatro João Ceschiatti, Sala Juvenal Dias, Cine Humberto Mauro Grande Galeria Alberto da Veiga Guignard, Galeria Genesco Murta, Galeria Arlinda Corrêa Lima e Espaço Mari’Stella Tristão.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=".col-md-4">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="../images/museu.jpg">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">Museu de Arte e Ofício<i class="mdi-navigation-more-vert right"></i></span>
+                                    <p>O Museu de Artes e Ofícios é um museu brasileiro localizado na cidade de Belo Horizonte. Inaugurado em 14 de dezembro de 2005, é o primeiro empreendimento museológico brasileiro dedicado integralmente ao tema do trabalho, das artes e ofícios no país. Com 9.000 m² de área, o museu está instalado no conjunto histórico da antiga Estação Central da Estrada de Ferro Central do Brasil, na Praça Rui Barbosa, mais conhecida como Praça da Estação. No mesmo local funcionam ainda hoje uma estação de metrô e um ramal ferroviário. É um dos museus mais bem estruturados do Brasil em termos de organização, estrutura para as exposições e uso de recursos audiovisuais.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=".col-md-4">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="../images/igrejinha.jpg">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator grey-text text-darken-4">Igrejinha da Pampulha<i class="mdi-navigation-more-vert right"></i></span>
+                                    <p>Uma das principais atrações do conjunto arquitetônico e urbanístico da Pampulha, a Igreja São Francisco de Assis, emoldurada pelas águas da lagoa, reúne as genialidades do arquiteto Oscar Niemeyer, do paisagista Burle Marx e do pintor Cândido Portinari. A combinação gerou a construção em tons azuis, com linhas e curvas totalmente revestida por azulejos e pelos painéis que retratam a Via Sacra e a imagem de São Francisco.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer-copyright default_color">
-            <div class="container">
-                Copyright © Olimpíadas Rio 2016
+    </div>
+    <!--Footer-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4>
+                        <strong>Olimpíadas 2016</strong>
+                    </h4>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Todos os direitos reservados - Olimpíadas Rio 2016</p>
+                </div>
             </div>
         </div>
     </footer>
-  </body>
-</html>
+    <!-- jQuery -->
+    <script src="scripts/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="scripts/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script>
+            // Closes the sidebar menu
+            $("#menu-close").click(function (e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
 
+            // Opens the sidebar menu
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#sidebar-wrapper").toggleClass("active");
+            });
+
+            // Scrolls to the selected menu item on the page
+            $(function () {
+                $('a[href*=#]:not([href=#])').click(function () {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 1000);
+                            return false;
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
