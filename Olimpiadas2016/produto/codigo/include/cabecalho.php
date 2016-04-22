@@ -8,11 +8,11 @@
     <meta name="author" content="">
     <title>Olimpíadas 2016</title>
     <!-- Bootstrap Core CSS -->
-    <link href="style/bootstrap.min.css" rel="stylesheet">
+    <link href="/Olimpiadas2016/produto/codigo/style/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="style/stylish-portfolio.css" rel="stylesheet">
+    <link href="/Olimpiadas2016/produto/codigo/style/stylish-portfolio.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/Olimpiadas2016/produto/codigo/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,16 +33,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">Olimpíadas 2016</a>
+                <a class="navbar-brand" href="/Olimpiadas2016/produto/codigo/index.php#page-top">Olimpíadas 2016</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#modalidade">Modalidades</a></li>
-                    <li><a href="#calendario">Calendário</a></li>
-                    <li><a href="#bh">BH</a></li>
-                    <li><a style="background-color:lightseagreen;" href="./usuario/login.html#login">Login</a></li>
-                    <li><a style="background-color:lightblue;" href="./faq.html#faq">FAQ</a></li>
+                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#modalidade">Modalidades</a></li>
+                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#calendario">Calendário</a></li>
+                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#bh">BH</a></li>
+                    <li><a style="background-color:lightseagreen;" href="/Olimpiadas2016/produto/codigo/usuario/login.php#login">Login</a></li>
+                    <li><a style="background-color:lightblue;" href="/Olimpiadas2016/produto/codigo/faq.php#faq">FAQ</a></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

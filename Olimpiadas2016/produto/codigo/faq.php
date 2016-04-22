@@ -1,10 +1,9 @@
-﻿<?php
-include("include/cabecalho.php"); 
-?>
+﻿<?php include("include/cabecalho.php"); ?>
 
-    <div class="container" id="faq">
-        <h2><b>Perguntas frequentes</b></h2>
-        <br>
+<section id="faq" class="about">
+    <div class="container" >
+        <h2 class="text-center">Perguntas Frequentes</h2>
+        <hr class="small">
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -57,5 +56,6 @@ include("include/cabecalho.php");
             </div>
         </div>
     </div>
-   
+</section>   
+
 <?php include("include/rodape.php"); ?>

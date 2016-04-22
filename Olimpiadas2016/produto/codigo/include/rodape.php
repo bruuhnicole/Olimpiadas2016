@@ -25,26 +25,12 @@
         </div>
     </footer>
     <!-- jQuery -->
-    <script src="scripts/jquery.js"></script>
+    <script src="/Olimpiadas2016/produto/codigo/scripts/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="scripts/bootstrap.min.js"></script>
-    <!-- Custom Theme JavaScript -->
+    <script src="/Olimpiadas2016/produto/codigo/scripts/bootstrap.min.js"></script>
     <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
     $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
+        $('.nav a[href*=#]:not([href=#])').click(function() {
             if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
                 var target = $(this.hash);
