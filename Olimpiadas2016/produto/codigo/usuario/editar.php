@@ -1,5 +1,6 @@
 ﻿<?php
-include("../include/cabecalho.php"); 
+include("../include/cabecalho.php");
+include("../include/autentificador.php"); 
 ?>
     <!--Editar-->
     <div id="editar" class="section scrollspy">
