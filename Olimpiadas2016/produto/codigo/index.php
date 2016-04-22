@@ -60,4 +60,4 @@ include("include/cabecalho.php");
         <!-- /.container -->
     </section>
         
-   <?php include("include/rodape.php"); ?>
+<?php include("include/rodape.php"); ?>

@@ -1,5 +1,6 @@
 ﻿<?php
 include("../include/cabecalho.php"); 
+include("../include/administrador.php");
 ?>
     <!--Editar evento-->
     <div class="container" id="cadastro">

@@ -2,7 +2,7 @@
 include("../include/cabecalho.php"); 
 ?>
     <!--Editar-->
-    <div id="cadastrar" class="section scrollspy">
+    <div id="editar" class="section scrollspy">
         <div class="container">
             <div class="row">
                 <div class="col s12">

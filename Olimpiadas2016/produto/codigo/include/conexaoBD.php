@@ -12,5 +12,4 @@
   if ($conn->connect_error) {
     die("Conexão ao MySQL falhou: " . $conn->connect_error);	
   }
-  
 ?>

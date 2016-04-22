@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +15,12 @@
     <!-- Custom Fonts -->
     <link href="/Olimpiadas2016/produto/codigo/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <style type="text/css">
+    .link-login, .link-login:hover {
+        background-color: lightseagreen !important;
+        color: white !important;
+    }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -40,18 +41,39 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Olimpiadas2016/produto/codigo/index.php#modalidade">Modalidades</a></li>
                     <li><a href="/Olimpiadas2016/produto/codigo/index.php#calendario">Calendário</a></li>
-                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#bh">BH</a></li>
-                    <li><a style="background-color:lightseagreen;" href="/Olimpiadas2016/produto/codigo/usuario/login.php#login">Login</a></li>
-                    <li><a style="background-color:lightblue;" href="/Olimpiadas2016/produto/codigo/faq.php#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#bh">BH</a></li>                    
+                    <?php if (!isset($_SESSION["login"])) {
+                        echo '<li><a class="link-login" href="/Olimpiadas2016/produto/codigo/usuario/login.php#login">Login</a></li>';
+                    } else {
+                        $menuUsuario = '<li class="dropdown"><a href="#" class="dropdown-toggle link-login" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
+                            .$_SESSION["login"].'&ensp;<span class="caret"></span></a><ul class="dropdown-menu">';
+
+                        if ($_SESSION["perfil"] == "Administrador") {
+                            $menuUsuario .= '<li><a href="/Olimpiadas2016/produto/codigo/evento/listar.php#eventos"><span class="glyphicon glyphicon-calendar"></span>&emsp;Gerenciar Eventos</a></li>
+                                <li role="separator" class="divider"></li>';
+                        }
+
+                       $menuUsuario .= '<li><a href="/Olimpiadas2016/produto/codigo/ingressos/comprar.php#comprar"><span class="glyphicon glyphicon-credit-card"></span>&emsp;Comprar Ingressos</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&emsp;Meu Carrinho</a></li>
+                                <li><a href="/Olimpiadas2016/produto/codigo/usuario/relatorio.php#relatorio"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Emitir Relatórios</a></li>
+                                <li><a href="/Olimpiadas2016/produto/codigo/usuario/editar.php#editar"><span class="glyphicon glyphicon-user"></span>&emsp;Meus dados</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/Olimpiadas2016/produto/codigo/usuario/logout.php"><span class="glyphicon glyphicon-log-out"></span>&emsp;Sair</a></li>
+                            </ul>';
+
+                        echo $menuUsuario;
+                    } ?>                    
+                </li>
+                <li><a style="background-color:lightblue;" href="/Olimpiadas2016/produto/codigo/faq.php#faq">FAQ</a></li>
+            </ul>
         </div>
-        <!-- /.container-fluid -->
-    </nav>
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1 style="color:white;text-shadow: 2px -2px 10px lime;">Olimpíadas 2016</h1>
-        </div>
-    </header>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- Header -->
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1 style="color:white;text-shadow: 2px -2px 10px lime;">Olimpíadas 2016</h1>
+    </div>
+</header>

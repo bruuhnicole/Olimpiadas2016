@@ -1,5 +1,6 @@
 ﻿<?php
-include("../include/cabecalho.php"); 
+include("../include/cabecalho.php");
+include("../include/administrador.php");
 ?>
     <!--Cadastrar-->
     <div class="container" id="cadastro">

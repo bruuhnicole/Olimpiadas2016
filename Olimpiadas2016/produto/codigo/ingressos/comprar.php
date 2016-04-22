@@ -1,8 +1,9 @@
 ﻿<?php
 include("../include/cabecalho.php"); 
+include("../include/autentificador.php");
 ?>
     <!--Comprar ingressos-->
-    <div class="container">
+    <div id="comprar" class="container">
         <h2><b>Ingressos Olimpíadas Rio 2016</b></h2>
         <div>
             <h3 class="promo-caption">07 de Agosto</h3><br>

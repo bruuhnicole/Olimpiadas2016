@@ -1,5 +1,6 @@
 ﻿<?php
 include("../include/cabecalho.php"); 
+include("../include/administrador.php");
 ?>
     <!--Listar-->
     <div class="section scrollspy" id="eventos">
