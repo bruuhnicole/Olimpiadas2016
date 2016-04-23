@@ -72,7 +72,7 @@
     <!-- /.container-fluid -->
 </nav>
 <!-- Header -->
-<header id="top" class="header">
+<header id="page-top" class="header">
     <div class="text-vertical-center">
         <h1 style="color:white;text-shadow: 2px -2px 10px lime;">Olimpíadas 2016</h1>
     </div>
