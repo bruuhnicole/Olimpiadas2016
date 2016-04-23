@@ -1,6 +1,88 @@
-﻿<?php
+<?php
+//require_once("../include/conexaoBD.php");
+include("../include/conexaoBD.php");
 include("../include/cabecalho.php"); 
-?>
+
+
+$msg = "";
+
+if (isset($_POST['nome'])){
+    
+    $nome = utf8_encode(htmlspecialchars($_POST['nome']));
+   
+        //Uso de prepared statment
+    $sql = "select * from usuario where nome = ?";
+    
+        // prepara uma consulta SQL: vinculacao de parametros
+        //mysqli_prepare() retorna um obtjeto do tipo statement ou FALSE se um erro ocorreu. 
+        // Para mais informacoes sobre o tipo statment veja: http://php.net/manual/pt_BR/class.mysqli-stmt.php
+    $stmt = $conn->prepare($sql); 
+    if ($stmt){
+            //var_dump($stmt);
+            //bind_param: associa os parametros a query SQL e envia ao bd quais parametros sao
+            //tipos: i-integer, d-double, s-string, b-BLOB
+            //especificar o tipo de dados minimiza o risco de SQL injections
+        $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
+        
+            //executa a consulta
+            //Mais detalhes: http://php.net/manual/pt_BR/mysqli-stmt.execute.php
+        $stmt->execute();   
+        
+        $result = $stmt->get_result(); 
+        
+            //debug:
+//        var_dump($result);
+        
+            //Considerando somente um registro.
+        $linha = $result->fetch_assoc(); 
+            //var_dump($linha);
+        if ($linha){
+            $msg = "Esse usuário já existe.";
+        }
+        else{
+            $senha = utf8_encode(htmlspecialchars($_POST['senha']));
+            $nome = utf8_encode(htmlspecialchars($_POST['nome']));
+            $perfil = utf8_encode(htmlspecialchars($_POST['perfil']));
+            $cpf = utf8_encode(htmlspecialchars($_POST['cpf']));
+            $dataNasc = utf8_encode(htmlspecialchars($_POST['dataNasc']));
+            $email = utf8_encode(htmlspecialchars($_POST['email']));
+            $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
+            $numero = utf8_encode(htmlspecialchars($_POST['numero']));
+            $bairro = utf8_encode(htmlspecialchars($_POST['bairro']));
+            $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
+            $estado = utf8_encode(htmlspecialchars($_POST['estado']));
+            $pais = utf8_encode(htmlspecialchars($_POST['pais']));
+            $sql = "INSERT INTO USUARIO(nome, senha, perfil, cpf, dataNasc, email, logradouro, numero, bairro, cidade, estado, pais) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);";
+            echo $sql;
+            $stmt = $conn->prepare($sql); 
+            if ($stmt){
+                $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
+                
+                $stmt->execute();   
+                if(!$stmt->errno){
+                    if ($stmt->affected_rows == 0) {
+                        $msg = "Nenhum registro foi adicionado!"; 
+                    }
+                    
+                    header("Location: ./cadastrar.php?msg=$msg");
+                }else{
+                        echo $stmt->error; //retorna a descricao do erro
+                        echo "<p><a href=\"./login.php\">Retornar</a></p>\n";
+                    }
+                }
+            }
+            
+            $stmt->close();             
+        }
+        else{
+            echo "Prepare falhou";
+        }
+        
+    }
+    $conn->close();
+    ?>
+
+
     <!--Cadastro-->
     <div id="cadastrar" class="section scrollspy">
         <div class="container">
@@ -8,7 +90,7 @@ include("../include/cabecalho.php");
                 <div class="col s12">
                     <div>
                         <h1>Cadastro</h1>
-                        <form class="pure-form pure-form-stacked">
+                        <form class="pure-form pure-form-stacked" action="cadastrar.php" method="post">
                             <fieldset>
                                 <legend>Preencha os dados:</legend>
                                 <div class="form-group">
