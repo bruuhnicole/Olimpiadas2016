@@ -1,8 +1,7 @@
 <?php
-//require_once("../include/conexaoBD.php");
-include("../include/conexaoBD.php");
-include("../include/cabecalho.php"); 
 
+include("../include/cabecalho.php"); 
+require_once("../include/conexaoBD.php");
 
 $msg = "";
 
@@ -44,7 +43,7 @@ if (isset($_POST['email'])){
             $senha = utf8_encode(htmlspecialchars($_POST['senha']));
             $perfil = utf8_encode(htmlspecialchars($_POST['perfil']));
             $cpf = utf8_encode(htmlspecialchars($_POST['cpf']));
-            $dataNasc = utf8_encode(htmlspecialchars($_POST['dataNasc']));
+            $dataNasc = utf8_encode(htmlspecialchars($_POST['data']));
             $email = utf8_encode(htmlspecialchars($_POST['email']));
             $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
             $numero = utf8_encode(htmlspecialchars($_POST['numero']));
