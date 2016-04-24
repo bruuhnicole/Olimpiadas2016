@@ -1,17 +1,18 @@
 <?php
-include("../include/conexaoBD.php");
+
 include("../include/cabecalho.php");
 include("../include/autentificador.php"); 
+include("../include/conexaoBD.php");
 
     $msg = "";
     $email = null;
     
-    if ( !empty($_GET['email'])) {
-        $email = $_REQUEST['email'];
+    if ( !empty( $_SESSION['login'])) {
+        $email = $_SESSION['login'];
     }
     
     if ( null==$email ) {
-        header("Location: editar.php");
+        header("Location: ../login.php");
     }
     
     if ( !empty($_POST)) {
@@ -20,10 +21,10 @@ include("../include/autentificador.php");
         $senha = utf8_encode(htmlspecialchars($_POST['senha']));
         $perfil = utf8_encode(htmlspecialchars($_POST['perfil']));
         $cpf = utf8_encode(htmlspecialchars($_POST['cpf']));
-        $dataNasc = utf8_encode(htmlspecialchars($_POST['dataNasc']));
+        $dataNasc = utf8_encode(htmlspecialchars($_POST['data']));
         $email = utf8_encode(htmlspecialchars($_POST['email']));
         $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
-        $numero = utf8_encode(htmlspecialchars($_POST['numero']));
+        $numero = utf8_encode(htmlspecialchars($_POST['num']));
         $bairro = utf8_encode(htmlspecialchars($_POST['bairro']));
         $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
         $estado = utf8_encode(htmlspecialchars($_POST['estado']));
@@ -44,10 +45,11 @@ include("../include/autentificador.php");
                 $msg = "Esse usuário já existe.";
             }
             else{
-                $sql = "UPDATE usuario SET email = ?, senha = ? WHERE email = ?";
+                $sql = "UPDATE usuario SET email = ?, senha = ?, nome = ?, perfil= ?, cpf=? , dataNasc=? , logradouro =?, numero=?, bairro=?, cidade=?, estado=?, pais=? WHERE email = ?";
+                echo $sql;
                 $stmt = $conn->prepare($sql); 
                 if ($stmt){
-                    $stmt->bind_param('ss', $email, $senha);
+                    $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
                     
                     $stmt->execute();   
                     if(!$stmt->errno){
@@ -55,7 +57,7 @@ include("../include/autentificador.php");
                             $msg = "Nenhum registro foi alterado!"; 
                         }
                             
-                        header("Location: ./cadastro.php?msg=$msg");
+                        header("Location: ./editar.php?msg=$msg");
                     }else{
                         echo $stmt->error; //retorna a descricao do erro
                         echo "<p><a href=\"./editar.php\">Retornar</a></p>\n";
@@ -70,12 +72,11 @@ include("../include/autentificador.php");
         }
         
     } else {
-        $sql = "select email, senha from usuario where email = ?";
-        
+        $sql = "select * from usuario where email = ?";
         // aqui populando campos.
         $stmt = $conn->prepare($sql); 
         if ($stmt){
-            $stmt->bind_param('i', $email);
+            $stmt->bind_param('s', $email);
             
             $stmt->execute();   
             $result = $stmt->get_result(); 
@@ -83,6 +84,16 @@ include("../include/autentificador.php");
             if ($linha){
                 $email = $linha['email'];
                 $senha = $linha['senha'];
+                $senha = $linha['nome'];
+                $senha = $linha['perfil'];
+                $senha = $linha['cpf'];
+                $senha = $linha['dataNasc'];
+                $senha = $linha['logradouro'];
+                $senha = $linha['numero'];
+                $senha = $linha['bairro'];
+                $senha = $linha['cidade'];
+                $senha = $linha['estado'];
+                $senha = $linha['pais'];
             }
         }
     }
@@ -96,7 +107,7 @@ include("../include/autentificador.php");
                 <div class="col s12">
                     <div>
                         <h1>Editar Dados Pessoais</h1>
-                        <form class="pure-form pure-form-stacked">
+                        <form class="pure-form pure-form-stacked" action="editar.php" method="post">
                             <fieldset>
                                 <legend>Preencha os dados</legend>
                                 <div class="form-group">
@@ -129,11 +140,39 @@ include("../include/autentificador.php");
                                 </div>
                                 <div class="form-group">
                                     <label>Estado</label>
-                                    <select style="width:70px;" class="form-control" id="estado">
-                                        <option>AC</option>
-                                        <option>MG</option>
-                                        <option>SP</option>
+                                    <select style="width:70px;" class="form-control" name="estado">
+                                        <option value="AC">AC</option>
+                                        <option value="AL">MG</option>
+                                        <option value="AP">AP</option>
+                                        <option value="AM">AM</option>
+                                        <option value="BA">BA</option>
+                                        <option value="CE">CE</option>
+                                        <option value="DF">DF</option>
+                                        <option value="ES">ES</option>
+                                        <option value="GO">GO</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MT">MT</option>
+                                        <option value="MS">MS</option>
+                                        <option value="MG">MG</option>
+                                        <option value="PA">PA</option>
+                                        <option value="PB">PB</option>
+                                        <option value="PR">PR</option>
+                                        <option value="PE">PE</option>
+                                        <option value="PI">PI</option>
+                                        <option value="RJ">RJ</option>
+                                        <option value="RN">RN</option>
+                                        <option value="RS">RS</option>
+                                        <option value="RO">RO</option>
+                                        <option value="RR">RR</option>
+                                        <option value="SC">SC</option>
+                                        <option value="SP">SP</option>
+                                        <option value="SE">SE</option>
+                                        <option value="TO">TO</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>País</label>
+                                    <input type="text" style="width:300px;" class="form-control" name="pais" placeholder="País..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>

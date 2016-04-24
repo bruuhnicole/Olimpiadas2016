@@ -39,6 +39,7 @@ if (isset($_POST['email'])){
             $msg = "Esse usuário já existe.";
         }
         else{
+            if($_POST['senha']==$_POST['repetir_senha']){
             $nome = utf8_encode(htmlspecialchars($_POST['nome']));
             $senha = utf8_encode(htmlspecialchars($_POST['senha']));
             $perfil = "Comum";
@@ -72,7 +73,11 @@ if (isset($_POST['email'])){
                         echo "<p><a href=\"./login.php\">Retornar</a></p>\n";
                     }
                 }
+                else{
+                    echo "As senhas digitadas não coicidem";
+                }
             }
+        }
             
             $stmt->close();             
         }
