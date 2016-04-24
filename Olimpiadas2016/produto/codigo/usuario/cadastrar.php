@@ -98,7 +98,8 @@ if (isset($_POST['email'])){
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" style="width:160px;" class="form-control" name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" size="15px" required>
+                                    <input type="text" style="width:160px;" class="form-control" name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" 
+                                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" size="15px" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Data de Nascimento</label>
@@ -121,11 +122,15 @@ if (isset($_POST['email'])){
                                     <input type="text" style="width:500px;" class="form-control" name="cidade" placeholder="Cidade..." required>
                                 </div>
                                 <div class="form-group">
+                                    <label>País</label>
+                                    <input type="text" style="width:300px;" class="form-control" name="pais" placeholder="País..." required>
+                                </div>
+                                <div class="form-group">
                                     <label>Estado</label>
-                                    <select style ="width:70px;" class="form-control" id="estado">
-                                        <option>AC</option>
-                                        <option>MG</option>
-                                        <option>SP</option>
+                                    <select style ="width:70px;" class="form-control" name="estado">
+                                        <option value="AC">AC</option>
+                                        <option value="MG">MG</option>
+                                        <option value="SP">SP</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
