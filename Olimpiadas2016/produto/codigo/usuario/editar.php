@@ -32,7 +32,7 @@ include("../include/conexaoBD.php");
         
         
         $sql = "select * from usuario where email = ? ";
-        
+        echo $sql;
         // aqui estou salvando alterações. Antes há um teste de usuário.
         $stmt = $conn->prepare($sql); 
         if ($stmt){
@@ -46,7 +46,7 @@ include("../include/conexaoBD.php");
             }
             else{
                 $sql = "UPDATE usuario SET email = ?, senha = ?, nome = ?, perfil= ?, cpf=? , dataNasc=? , logradouro =?, numero=?, bairro=?, cidade=?, estado=?, pais=? WHERE email = ?";
-                echo $sql;
+               
                 $stmt = $conn->prepare($sql); 
                 if ($stmt){
                     $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
@@ -72,8 +72,8 @@ include("../include/conexaoBD.php");
         }
         
     } else {
-        $sql = "select * from usuario where email = ?";
-        // aqui populando campos.
+        $sql = "select * from usuario where email = ?";
+
         $stmt = $conn->prepare($sql); 
         if ($stmt){
             $stmt->bind_param('s', $email);
@@ -84,16 +84,16 @@ include("../include/conexaoBD.php");
             if ($linha){
                 $email = $linha['email'];
                 $senha = $linha['senha'];
-                $senha = $linha['nome'];
-                $senha = $linha['perfil'];
-                $senha = $linha['cpf'];
-                $senha = $linha['dataNasc'];
-                $senha = $linha['logradouro'];
-                $senha = $linha['numero'];
-                $senha = $linha['bairro'];
-                $senha = $linha['cidade'];
-                $senha = $linha['estado'];
-                $senha = $linha['pais'];
+                $nome = $linha['nome'];
+                $perfil = $linha['perfil'];
+                $cpf = $linha['cpf'];
+                $dataNasc = $linha['dataNasc'];
+                $logradouro = $linha['logradouro'];
+                $numero = $linha['numero'];
+                $bairro = $linha['bairro'];
+                $cidade = $linha['cidade'];
+                $estado = $linha['estado'];
+                $pais = $linha['pais'];
             }
         }
     }
@@ -112,31 +112,31 @@ include("../include/conexaoBD.php");
                                 <legend>Preencha os dados</legend>
                                 <div class="form-group">
                                     <label>Nome Completo</label>
-                                    <input type="text" style="width:600px;" class="form-control" name="nome" placeholder="Nome Completo..." required size="50px">
+                                    <input type="text" style="width:600px;" class="form-control" value="<?php echo !empty($nome)?$nome:'';?>" name="nome" placeholder="Nome Completo..." required size="50px">
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" style="width:160px;" class="form-control" name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" size="15px" required>
+                                    <input type="text" style="width:160px;" class="form-control" value="<?php echo !empty($cpf)?$cpf:'';?>"name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" size="15px" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="date" style="width:160px;" class="form-control" name="data" maxlenght="10" placeholder="XX/XX/XXXX" required>
+                                    <input type="date" style="width:160px;" class="form-control" value="<?php echo !empty($dataNasc)?$dataNasc:'';?> "name="data" maxlenght="10" placeholder="XX/XX/XXXX" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Logradouro</label>
-                                    <input type="text" style="width:600px;" class="form-control" name="logradouro" placeholder="Av., Rua..." required>
+                                    <input type="text" style="width:600px;" class="form-control" value="<?php echo !empty($logradouro)?$logradouro:'';?> "name="logradouro" placeholder="Av., Rua..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nº</label>
-                                    <input type="text" style="width:100px;" class="form-control" name="num" placeholder="Nº..." required>
+                                    <input type="text" style="width:100px;" class="form-control" value="<?php echo !empty($numero)?$numero:'';?>" name="num" placeholder="Nº..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>Bairro</label>
-                                    <input type="text" style="width:500px;" class="form-control" name="bairro" placeholder="Bairro..." required>
+                                    <input type="text" style="width:500px;" class="form-control" value="<?php echo !empty($bairro)?$bairro:'';?> "name="bairro" placeholder="Bairro..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>Cidade</label>
-                                    <input type="text" style="width:500px;" class="form-control" name="cidade" placeholder="Cidade..." required>
+                                    <input type="text" style="width:500px;" class="form-control" value="<?php echo !empty($cidade)?$cidade:'';?>" name="cidade" placeholder="Cidade..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>Estado</label>
@@ -172,11 +172,11 @@ include("../include/conexaoBD.php");
                                 </div>
                                 <div class="form-group">
                                     <label>País</label>
-                                    <input type="text" style="width:300px;" class="form-control" name="pais" placeholder="País..." required>
+                                    <input type="text" style="width:300px;" class="form-control" value="<?php echo !empty($pais)?$pais:'';?>" name="pais" placeholder="País..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="email" style="width:500px;" class="form-control" name="email" placeholder="nome@nome.com" required>
+                                    <input type="email" style="width:500px;" class="form-control" value="<?php echo !empty($email)?$email:'';?>" name="email" placeholder="nome@nome.com" required>
                                 </div>
                                 <input type="submit" value="Salvar">
                             </fieldset>
