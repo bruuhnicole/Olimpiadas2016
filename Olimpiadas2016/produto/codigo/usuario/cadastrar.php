@@ -46,7 +46,7 @@ if (isset($_POST['email'])){
             $dataNasc = utf8_encode(htmlspecialchars($_POST['data']));
             $email = utf8_encode(htmlspecialchars($_POST['email']));
             $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
-            $numero = utf8_encode(htmlspecialchars($_POST['numero']));
+            $numero = utf8_encode(htmlspecialchars($_POST['num']));
             $bairro = utf8_encode(htmlspecialchars($_POST['bairro']));
             $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
             $estado = utf8_encode(htmlspecialchars($_POST['estado']));
