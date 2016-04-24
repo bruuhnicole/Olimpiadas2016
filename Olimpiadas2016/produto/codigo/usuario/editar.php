@@ -4,13 +4,13 @@ include("../include/cabecalho.php");
 include("../include/autentificador.php"); 
 
     $msg = "";
-    $codigoUsuario = null;
+    $email = null;
     
-    if ( !empty($_GET['codigoUsuario'])) {
-        $codigoUsuario = $_REQUEST['codigoUsuario'];
+    if ( !empty($_GET['email'])) {
+        $email = $_REQUEST['email'];
     }
     
-    if ( null==$codigoUsuario ) {
+    if ( null==$email ) {
         header("Location: editar.php");
     }
     
@@ -30,12 +30,12 @@ include("../include/autentificador.php");
         $pais = utf8_encode(htmlspecialchars($_POST['pais']));
         
         
-        $sql = "select * from usuario where email = ? and codigoUsuario <> ?";
+        $sql = "select * from usuario where email = ? ";
         
         // aqui estou salvando alterações. Antes há um teste de usuário.
         $stmt = $conn->prepare($sql); 
         if ($stmt){
-            $stmt->bind_param('si', $email, $codigoUsuario);
+            $stmt->bind_param('s', $email);
             
             $stmt->execute();   
             $result = $stmt->get_result(); 
@@ -44,10 +44,10 @@ include("../include/autentificador.php");
                 $msg = "Esse usuário já existe.";
             }
             else{
-                $sql = "UPDATE usuario SET email = ?, senha = ? WHERE codigoUsuario = ?";
+                $sql = "UPDATE usuario SET email = ?, senha = ? WHERE email = ?";
                 $stmt = $conn->prepare($sql); 
                 if ($stmt){
-                    $stmt->bind_param('ssi', $email, $senha, $codigoUsuario);
+                    $stmt->bind_param('ss', $email, $senha);
                     
                     $stmt->execute();   
                     if(!$stmt->errno){
@@ -70,12 +70,12 @@ include("../include/autentificador.php");
         }
         
     } else {
-        $sql = "select email, senha from usuario where codigoUsuario = ?";
+        $sql = "select email, senha from usuario where email = ?";
         
         // aqui populando campos.
         $stmt = $conn->prepare($sql); 
         if ($stmt){
-            $stmt->bind_param('i', $codigoUsuario);
+            $stmt->bind_param('i', $email);
             
             $stmt->execute();   
             $result = $stmt->get_result(); 
