@@ -6,12 +6,12 @@ include("../include/cabecalho.php");
 
 $msg = "";
 
-if (isset($_POST['nome'])){
+if (isset($_POST['email'])){
     
-    $nome = utf8_encode(htmlspecialchars($_POST['nome']));
+    $email = utf8_encode(htmlspecialchars($_POST['email']));
    
         //Uso de prepared statment
-    $sql = "select * from usuario where nome = ?";
+    $sql = "select * from usuario where email = ?";
     
         // prepara uma consulta SQL: vinculacao de parametros
         //mysqli_prepare() retorna um obtjeto do tipo statement ou FALSE se um erro ocorreu. 
@@ -22,7 +22,7 @@ if (isset($_POST['nome'])){
             //bind_param: associa os parametros a query SQL e envia ao bd quais parametros sao
             //tipos: i-integer, d-double, s-string, b-BLOB
             //especificar o tipo de dados minimiza o risco de SQL injections
-        $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
+        $stmt->bind_param('s', $email);
         
             //executa a consulta
             //Mais detalhes: http://php.net/manual/pt_BR/mysqli-stmt.execute.php
@@ -40,8 +40,8 @@ if (isset($_POST['nome'])){
             $msg = "Esse usuário já existe.";
         }
         else{
-            $senha = utf8_encode(htmlspecialchars($_POST['senha']));
             $nome = utf8_encode(htmlspecialchars($_POST['nome']));
+            $senha = utf8_encode(htmlspecialchars($_POST['senha']));
             $perfil = utf8_encode(htmlspecialchars($_POST['perfil']));
             $cpf = utf8_encode(htmlspecialchars($_POST['cpf']));
             $dataNasc = utf8_encode(htmlspecialchars($_POST['dataNasc']));
