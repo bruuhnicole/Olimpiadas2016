@@ -7,8 +7,7 @@ if (isset($_POST['nome'])){
     
     $nome = utf8_encode(htmlspecialchars($_POST['nome']));   
        
-    $sql = "select * from evento where nome = ?";
-            
+    $sql = "select * from evento where nome = ?";            
     $stmt = $conn->prepare($sql); 
 
     if ($stmt){
