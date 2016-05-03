@@ -4,7 +4,6 @@ include("../include/cabecalho.php");
 include("../include/autentificador.php"); 
 include("../include/conexaoBD.php");
 
-    $msg = "";
     $email = null;
     
     if ( !empty( $_SESSION['login'])) {
@@ -14,62 +13,83 @@ include("../include/conexaoBD.php");
     if ( null==$email ) {
         header("Location: ../login.php");
     }
+
+    if ( !empty($_GET["msg2"])) {
+        $msg2 = $_GET["msg2"];
+    }
+
+    if ( !empty($_GET["msg"])) {
+        $msg = $_GET["msg"];
+    }
+
     
     if ( !empty($_POST)) {
 
-        $nome = utf8_encode(htmlspecialchars($_POST['nome']));
-        $senha = utf8_encode(htmlspecialchars($_POST['senha']));
-        $perfil = utf8_encode(htmlspecialchars($_POST['perfil']));
-        $cpf = utf8_encode(htmlspecialchars($_POST['cpf']));
-        $dataNasc = utf8_encode(htmlspecialchars($_POST['data']));
-        $email = utf8_encode(htmlspecialchars($_POST['email']));
-        $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
-        $numero = utf8_encode(htmlspecialchars($_POST['num']));
-        $bairro = utf8_encode(htmlspecialchars($_POST['bairro']));
-        $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
-        $estado = utf8_encode(htmlspecialchars($_POST['estado']));
-        $pais = utf8_encode(htmlspecialchars($_POST['pais']));
-        
-        
-        $sql = "select * from usuario where email = ? ";
-        echo $sql;
-        // aqui estou salvando alterações. Antes há um teste de usuário.
-        $stmt = $conn->prepare($sql); 
-        if ($stmt){
-            $stmt->bind_param('s', $email);
-            
-            $stmt->execute();   
-            $result = $stmt->get_result(); 
-            $linha = $result->fetch_assoc(); 
-            if ($linha){
-                $msg = "Esse usuário já existe.";
-            }
-            else{
-                $sql = "UPDATE usuario SET email = ?, senha = ?, nome = ?, perfil= ?, cpf=? , dataNasc=? , logradouro =?, numero=?, bairro=?, cidade=?, estado=?, pais=? WHERE email = ?";
-               
-                $stmt = $conn->prepare($sql); 
-                if ($stmt){
-                    $stmt->bind_param('ssssssssssss', $nome, $senha, $perfil, $cpf, $dataNasc, $email, $logradouro, $numero, $bairro, $cidade, $estado, $pais);
-                    
-                    $stmt->execute();   
-                    if(!$stmt->errno){
-                        if ($stmt->affected_rows == 0) {
-                            $msg = "Nenhum registro foi alterado!"; 
-                        }
-                            
-                        header("Location: ./editar.php?msg=$msg");
-                    }else{
-                        echo $stmt->error; //retorna a descricao do erro
-                        echo "<p><a href=\"./editar.php\">Retornar</a></p>\n";
+    	if(!empty($_POST["trocaSenha"])) 	{
+
+    		$senha = $_POST["senha"];
+    		$novaSenha = $_POST["nova_senha"];
+    		
+    		$sql = "select * from usuario where email = ? and senha = ?";
+	        //testa se a senha está correta
+	        $stmt = $conn->prepare($sql); 
+	        if ($stmt){
+	            $stmt->bind_param('ss', $email, $senha);
+	            
+	            $stmt->execute();   
+	            $result = $stmt->get_result(); 
+                $linha = $result->fetch_assoc(); 
+	            if ($linha["senha"] != $senha){
+	                $msg2 = "Senha antiga incorreta!";
+                    die("<script>location.href = './editar.php?msg2=$msg2#senha'</script>");
+	            }
+	            else{
+	            	$sql = "UPDATE usuario SET senha=? WHERE email = ?";
+			        // troca senha
+			        $stmt = $conn->prepare($sql); 
+			        if ($stmt){
+			            $stmt->bind_param('ss', $novaSenha, $email);
+			            
+			            $stmt->execute();
+                        $msg2 = "Senha alterada com sucesso!";
+                        die("<script>location.href = './editar.php?msg2=$msg2#senha'</script>");   
+			        }
+	            }
+	        }
+    	}
+    	else{
+
+	        $nome = utf8_encode(htmlspecialchars($_POST['nome']));
+	        $dataNasc = utf8_encode(htmlspecialchars($_POST['data']));
+	        $logradouro = utf8_encode(htmlspecialchars($_POST['logradouro']));
+	        $numero = utf8_encode(htmlspecialchars($_POST['num']));
+	        $bairro = utf8_encode(htmlspecialchars($_POST['bairro']));
+	        $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
+	        $estado = utf8_encode(htmlspecialchars($_POST['estado']));
+	        $pais = utf8_encode(htmlspecialchars($_POST['pais']));
+	        
+	        
+            $sql = "UPDATE usuario SET  nome = ?, dataNasc=? , logradouro =?, numero=?, bairro=?, cidade=?, estado=?, pais=? WHERE email = ?";
+         
+            $stmt = $conn->prepare($sql); 
+            if ($stmt){
+                $stmt->bind_param('sssssssss', $nome, $dataNasc, $logradouro, $numero, $bairro, $cidade, $estado, $pais, $email);
+                
+                $stmt->execute();   
+                if(!$stmt->errno){
+                    if ($stmt->affected_rows == 0) {
+                        $msg = "Nenhum registro foi alterado!"; 
                     }
+                    $msg = "Dados alterados com sucesso!";
+                    die("<script>location.href = './editar.php?msg=$msg#editar'</script>");
+                }else{
+                    echo $stmt->error; //retorna a descricao do erro
+                    echo "<p><a href=\"./editar.php\">Retornar</a></p>\n";
                 }
-            }
-            
-            $stmt->close();             
-        }
-        else{
-            echo "Prepare falhou";
-        }
+            }	            
+	            
+	         $stmt->close();
+    	}
         
     } else {
         $sql = "select * from usuario where email = ?";
@@ -83,11 +103,9 @@ include("../include/conexaoBD.php");
             $linha = $result->fetch_assoc(); 
             if ($linha){
                 $email = $linha['email'];
-                $senha = $linha['senha'];
                 $nome = $linha['nome'];
-                $perfil = $linha['perfil'];
                 $cpf = $linha['cpf'];
-                $dataNasc = $linha['dataNasc'];
+                $dataNasc = date('Y-m-d',strtotime($linha['dataNasc']));
                 $logradouro = $linha['logradouro'];
                 $numero = $linha['numero'];
                 $bairro = $linha['bairro'];
@@ -97,7 +115,7 @@ include("../include/conexaoBD.php");
             }
         }
     }
-    
+
     $conn->close();
 ?>
     <!--Editar-->
@@ -107,20 +125,21 @@ include("../include/conexaoBD.php");
                 <div class="col s12">
                     <div>
                         <h1>Editar Dados Pessoais</h1>
-                        <form class="pure-form pure-form-stacked" action="editar.php" method="post">
+                        <form class="pure-form pure-form-stacked" action="editar.php#editar" method="post">
                             <fieldset>
                                 <legend>Preencha os dados</legend>
+                                <?php if(isset($msg)){ echo "<div class='alert alert-danger col-sm-12'>".$msg."</div>"; } ?>
                                 <div class="form-group">
                                     <label>Nome Completo</label>
                                     <input type="text" style="width:600px;" class="form-control" value="<?php echo !empty($nome)?$nome:'';?>" name="nome" placeholder="Nome Completo..." required size="50px">
                                 </div>
                                 <div class="form-group">
                                     <label>CPF</label>
-                                    <input type="text" style="width:160px;" class="form-control" value="<?php echo !empty($cpf)?$cpf:'';?>"name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" size="15px" required>
+                                    <input type="text" style="width:160px;" disabled class="form-control" value="<?php echo !empty($cpf)?$cpf:'';?>"name="cpf" maxlength="14" placeholder="XXX.XXX.XXX-XX" size="15px" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Data de Nascimento</label>
-                                    <input type="date" style="width:160px;" class="form-control" value="<?php echo !empty($dataNasc)?$dataNasc:'';?> "name="data" maxlenght="10" placeholder="XX/XX/XXXX" required>
+                                    <input type="date" style="width:160px;" class="form-control" value="<?php echo isset($dataNasc)?$dataNasc:'';?>"name="data" maxlength="10" placeholder="XX/XX/XXXX" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Logradouro</label>
@@ -141,33 +160,34 @@ include("../include/conexaoBD.php");
                                 <div class="form-group">
                                     <label>Estado</label>
                                     <select style="width:70px;" class="form-control" name="estado">
-                                        <option value="AC">AC</option>
-                                        <option value="AL">MG</option>
-                                        <option value="AP">AP</option>
-                                        <option value="AM">AM</option>
-                                        <option value="BA">BA</option>
-                                        <option value="CE">CE</option>
-                                        <option value="DF">DF</option>
-                                        <option value="ES">ES</option>
-                                        <option value="GO">GO</option>
-                                        <option value="MA">MA</option>
-                                        <option value="MT">MT</option>
-                                        <option value="MS">MS</option>
-                                        <option value="MG">MG</option>
-                                        <option value="PA">PA</option>
-                                        <option value="PB">PB</option>
-                                        <option value="PR">PR</option>
-                                        <option value="PE">PE</option>
-                                        <option value="PI">PI</option>
-                                        <option value="RJ">RJ</option>
-                                        <option value="RN">RN</option>
-                                        <option value="RS">RS</option>
-                                        <option value="RO">RO</option>
-                                        <option value="RR">RR</option>
-                                        <option value="SC">SC</option>
-                                        <option value="SP">SP</option>
-                                        <option value="SE">SE</option>
-                                        <option value="TO">TO</option>
+
+                                        <?php if($estado == "AC") {?><option value="AC" selected>AC</option> <?php } else {?><option value="AC">AC</option> <?php }?>
+                                        <?php if($estado == "AP") {?><option value="AP" selected>AP</option> <?php } else {?><option value="AP">AP</option> <?php }?>
+                                        <?php if($estado == "AM") {?><option value="AM" selected>AM</option> <?php } else {?><option value="AM">AM</option> <?php }?>
+                                        <?php if($estado == "BA") {?><option value="BA" selected>BA</option> <?php } else {?><option value="BA">BA</option> <?php }?>
+                                        <?php if($estado == "CE") {?><option value="CE" selected>CE</option> <?php } else {?><option value="CE">CE</option> <?php }?>
+                                        <?php if($estado == "DF") {?><option value="DF" selected>DF</option> <?php } else {?><option value="DF">DF</option> <?php }?>
+                                        <?php if($estado == "ES") {?><option value="ES" selected>ES</option> <?php } else {?><option value="ES">ES</option> <?php }?>
+                                        <?php if($estado == "GO") {?><option value="GO" selected>GO</option> <?php } else {?><option value="GO">GO</option> <?php }?>
+                                        <?php if($estado == "MA") {?><option value="MA" selected>MA</option> <?php } else {?><option value="MA">MA</option> <?php }?>
+                                        <?php if($estado == "MT") {?><option value="MT" selected>MT</option> <?php } else {?><option value="MT">MT</option> <?php }?>
+                                        <?php if($estado == "MS") {?><option value="MS" selected>MS</option> <?php } else {?><option value="MS">MS</option> <?php }?>
+                                        <?php if($estado == "MG") {?><option value="MG" selected>MG</option> <?php } else {?><option value="MG">MG</option> <?php }?>
+                                        <?php if($estado == "PA") {?><option value="PA" selected>PA</option> <?php } else {?><option value="PA">PA</option> <?php }?>
+                                        <?php if($estado == "PB") {?><option value="PB" selected>PB</option> <?php } else {?><option value="PB">PB</option> <?php }?>
+                                        <?php if($estado == "PR") {?><option value="PR" selected>PR</option> <?php } else {?><option value="PR">PR</option> <?php }?>
+                                        <?php if($estado == "PE") {?><option value="PE" selected>PE</option> <?php } else {?><option value="PE">PE</option> <?php }?>
+                                        <?php if($estado == "PI") {?><option value="PI" selected>PI</option> <?php } else {?><option value="PI">PI</option> <?php }?>
+                                        <?php if($estado == "RJ") {?><option value="RJ" selected>RJ</option> <?php } else {?><option value="RJ">RJ</option> <?php }?>
+                                        <?php if($estado == "RN") {?><option value="RN" selected>RN</option> <?php } else {?><option value="RN">RN</option> <?php }?>
+                                        <?php if($estado == "RS") {?><option value="RS" selected>RS</option> <?php } else {?><option value="RS">RS</option> <?php }?>
+                                        <?php if($estado == "RO") {?><option value="RO" selected>RO</option> <?php } else {?><option value="RO">RO</option> <?php }?>
+                                        <?php if($estado == "RR") {?><option value="RR" selected>RR</option> <?php } else {?><option value="RR">RR</option> <?php }?>
+                                        <?php if($estado == "SC") {?><option value="SC" selected>SC</option> <?php } else {?><option value="SC">SC</option> <?php }?>
+                                        <?php if($estado == "SP") {?><option value="SP" selected>SP</option> <?php } else {?><option value="SP">SP</option> <?php }?>
+                                        <?php if($estado == "SE") {?><option value="SE" selected>SE</option> <?php } else {?><option value="SE">SE</option> <?php }?>
+                                        <?php if($estado == "TO") {?><option value="TO" selected>TO</option> <?php } else {?><option value="TO">TO</option> <?php }?>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -176,24 +196,25 @@ include("../include/conexaoBD.php");
                                 </div>
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="email" style="width:500px;" class="form-control" value="<?php echo !empty($email)?$email:'';?>" name="email" placeholder="nome@nome.com" required>
+                                    <input type="email" style="width:500px;" disabled class="form-control" value="<?php echo !empty($email)?$email:'';?>" name="email" placeholder="nome@nome.com" required>
                                 </div>
                                 <input type="submit" value="Salvar">
                             </fieldset>
                         </form>
                         </br>
-                        <form class="pure-form pure-form-stacked">
+                        <form id="senha" class="pure-form pure-form-stacked" action="editar.php#senha" method="post">
                             <fieldset>
+                            <?php if(isset($msg2)){ echo "<div class='alert alert-danger col-sm-12'>".$msg2."</div>"; } ?>
                                 <legend>Trocar Senha</legend>
                                 <div class="form-group">
                                     <label>Senha Antiga</label>
-                                    <input type="password" style="width:180px;" class="form-control" name="senha" maxlength="6" placeholder="Máximo 6 caracteres..." required>
+                                    <input type="password" style="width:180px;" class="form-control" name="senha" maxlength="8" placeholder="Máximo 6 caracteres..." required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nova Senha</label>
-                                    <input type="password" style="width:180px;" class="form-control" name="nova_senha" maxlength="6" placeholder="Repita a Senha..." required><br>
+                                    <input type="password" style="width:180px;" class="form-control" name="nova_senha" maxlength="8" placeholder="Repita a Senha..." required><br>
                                 </div>
-                                <input type="submit" value="Alterar Senha">
+                                <input type="submit" name="trocaSenha" value="Alterar Senha">
                             </fieldset>
                         </form>
                     </div>

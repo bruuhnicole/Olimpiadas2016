@@ -47,9 +47,7 @@ if (isset($_POST['nome'])){
                 $stmt->execute();           
                 $result = $stmt->get_result();
                 $linha = $result->fetch_assoc(); 
-                $codModalidade = $linha['codModalidade'];
-                                
-                $tempo = explode (":", $horario);
+                $codModalidade = $linha['codModalidade'];               
                 
                 $sql = "INSERT INTO EVENTO(codModalidade, nome, local, cidade, dataInicio, dataFim, qtdIngressos, valor)VALUES(?,?,?,?,?,?,?,?);";
                 
@@ -93,9 +91,9 @@ $conn->close();
                     <label for="horario">Horário: </label>
                     <input style="width:115px;" class="form-control" type="time" name="horario" placeholder="hh:mm" required>
                     <label>Data de inicio: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataInicio" placeholder="dd/mm/yyyy" required>
+                    <input style="width:160px;" class="form-control" type="date" name="dataInicio" max="2016-08-02" min="2016-08-22" placeholder="dd/mm/yyyy" required>
                     <label>Data de fim: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataFim" placeholder="dd/mm/yyyy" required>
+                    <input style="width:160px;" class="form-control" type="date" name="dataFim" max="2016-08-02" min="2016-08-22" placeholder="dd/mm/yyyy" required>
                     <label for="ingresso">Quantidade de ingressos: </label>
                     <input style="width:70px;" class="form-control" type="number" name="ingresso" required>
 
@@ -110,7 +108,7 @@ $conn->close();
                 <div class="form-group">
                     <label for="modalidad">Modalidade:</label>
                     <select style="width:150px;" class="form-control" name="modalidad">
-                        <option value= htmlspecialchars("Vôlei de praia") >Vôlei de praia</option>
+                        <option value= "Vôlei de praia" >Vôlei de praia</option>
                         <option value="Voleibol">Voleibol</option>
                         <option value="Ginástica artística">Ginástica artística</option>
                         <option value="Futebol">Futebol</option>

@@ -1,13 +1,15 @@
 ﻿<?php
+
 include("../include/cabecalho.php"); 
 include("../include/administrador.php");
 require_once("../include/conexaoBD.php");
 
+$codigoEvento = "";
 
-
-if (!empty($_POST)) {
-
+if(isset($GET['codEvento']))
     $codigoEvento = utf8_encode(htmlspecialchars($_GET['codEvento']));
+
+if (!empty($_POST)) { 
 
     $modalidade = utf8_encode(htmlspecialchars($_POST['modalidad']));
 
@@ -21,57 +23,33 @@ if (!empty($_POST)) {
     $valor = utf8_encode(htmlspecialchars($_POST['valor']));                           
 
     $local = utf8_encode(htmlspecialchars($_POST['local'])); 
-    $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));
-
-    //Pegar o código do esporte selecionado
-    $sql = "select * from modalidade where descricao = ?";            
-    $stmt = $conn->prepare($sql);  
-    $stmt->bind_param('s', $modalidade);
-    $stmt->execute();           
-    $result = $stmt->get_result();
-    $linha = $result->fetch_assoc(); 
-    $codModalidade = $linha['codModalidade'];
-
-    $sql = "select * from evento where nome = ?";            
-    $stmt = $conn->prepare($sql);
+    $cidade = utf8_encode(htmlspecialchars($_POST['cidade']));   
+               
+    
+    $sql = "UPDATE EVENTO SET nome = ?, local = ?, cidade = ?, dataInicio = ?, dataFim = ?, qtdIngressos = ?, valor = ? WHERE codEvento = ?";
+                
+    $stmt = $conn->prepare($sql); 
 
     if ($stmt){
-
-        $stmt->bind_param('s', $nome);
-        //executa a consulta
-        $stmt->execute();   
+        $stmt->bind_param('sssssidi', $nome, $local, $cidade, $dataInicio, $dataFim, $ingresso, $valor, $codigoEvento);
         
-        $result = $stmt->get_result();
-        $linha = $result->fetch_assoc(); 
-            
-        if ($linha){
-            $msg = "Esse evento já está cadastrado!";
-        }
-        else
-        {
-            $sql = "UPDATE EVENTO SET codModalidade = ?, nome = ?, local = ?, cidade = ?, dataInicio = ?, dataFim = ?, qtdIngressos = ?, valor = ? WHERE codigoEvento = ?);";
-                
-            $stmt = $conn->prepare($sql); 
+        $stmt->execute(); 
 
-            if ($stmt){
-                $stmt->bind_param('isssssids', $codModalidade ,$nome, $local, $cidade, $dataInicio, $dataFim, $ingresso, $valor, $codigoEvento);
-                    
-                $stmt->execute(); 
-
-                if(!$stmt->errno){
-                    if ($stmt->affected_rows == 0) {
-                        $msg = "Nenhum registro foi adicionado!"; 
-                    }                       
-                        
-                }else{
-                        header("Location: ./listar.php#eventos");
-                    }
+        if(!$stmt->errno){
+            if ($stmt->affected_rows == 0) {
+                $msg = "Nenhum registro foi adicionado!"; 
             }
-        }
-    }
+        }else{
+            header("Location: ./listar.php#eventos");
+            }
+    } 
 
-}else{
+    $stmt->close();   
+
+}else{  
         $codigoEvento = utf8_encode(htmlspecialchars($_GET['codEvento']));
+
+        
 
         $sql = "select nome, qtdIngressos, valor, descricao, local, cidade, descricao, TIME_FORMAT(dataInicio, '%H:%i') as horario, DATE_FORMAT(dataInicio, '%Y-%m-%d') as dtini, DATE_FORMAT(dataFim, '%Y-%m-%d') as dtfim from evento natural join modalidade where codEvento = ?";
 
@@ -96,15 +74,12 @@ if (!empty($_POST)) {
                $modalidade = $linha['descricao'];
 
                $local = $linha['local'];
-               $cidade = $linha['cidade'];
+               $cidade = $linha['cidade'];               
             }
-    
+            $stmt->close();
         }
-        
 }
-
 ?>
-
     <!--Editar evento-->
     <div class="container" id="editar">
         <h2><b>Edição de evento</b></h2>
@@ -141,11 +116,13 @@ if (!empty($_POST)) {
                 <legend>Esporte</legend>                
                 <div class="form-group">
                     <label for="modalidad">Modalidade:</label>
-                    <select style="width:150px;" class="form-control" value="<?php echo !empty($modalidade)?$modalidade:'';?>"  name="modalidade">
-                        <option value= htmlspecialchars("Vôlei de praia") >Vôlei de praia</option>
+                    <select style="width:150px;" class="form-control" value="<?php echo !empty($modalidade)?$modalidade:'';?>"  name="modalidad">
+                        
+                        <option value="Vôlei de praia">Vôlei de praia</option>
                         <option value="Voleibol">Voleibol</option>
                         <option value="Ginástica artística">Ginástica artística</option>
                         <option value="Futebol">Futebol</option>
+
                     </select>
                 </div>
             </fieldset>
@@ -172,4 +149,5 @@ if (!empty($_POST)) {
             </div>
         </form>
     </div>
+
 <?php include("../include/rodape.php"); ?>

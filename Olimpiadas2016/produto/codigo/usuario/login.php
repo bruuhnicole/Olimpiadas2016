@@ -3,6 +3,10 @@ include("../include/cabecalho.php");
 
 require_once("../include/conexaoBD.php"); 
 
+if(isset($_GET['msg'])){
+    $msg = $_GET['msg'];
+}
+
 if (isset($_POST['username'])){
 
     if (empty($_POST['username'])){
@@ -69,7 +73,7 @@ $conn->close();
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <input id="login-password" maxlength="6" type="password" class="form-control" name="senha" placeholder="Senha" required>
+                                <input id="login-password" maxlength="8" type="password" class="form-control" name="senha" placeholder="Senha" required>
                             </div>
                             <div class="form-group">
                                 <!-- Button -->

@@ -85,13 +85,12 @@ include("include/cabecalho.php");
                     } ?>                   
                 </div>                
             </div>
-            <h5 class="text-center"><a class="text-info" href="ingressos/comprar.php#comprar">Clique aqui para comprar seu ingresso!</a></h5>
             <div class="tab-content">
                 <?php 
                 require_once("include/conexaoBD.php");
 
                 for ($i=3; $i <= 21; $i++) { 
-                    $sql = "select descricao, local, cidade, TIME_FORMAT(dataInicio, '%H:%i') as horario, nome
+                    $sql = "select codEvento, descricao, local, cidade, TIME_FORMAT(dataInicio, '%H:%i') as horario, nome
                     from evento inner join modalidade on evento.codModalidade = modalidade.codModalidade 
                     and DAY(dataInicio) = ".$i." order by dataInicio ASC"; 
 
@@ -106,6 +105,7 @@ include("include/cabecalho.php");
                         echo '<p><b>Local: </b>'.$row['local'].' - '.$row['cidade'].'</p>';
                         echo '<p><b>Horário: </b>'.$row['horario'].'</p>';
                         echo '<p><b>Evento: </b>'.$row['nome'].'</p>';
+                        echo "<a type='submit' class='btn btn-info' href='ingressos/comprar.php?codigo=".htmlspecialchars($row['codEvento'])."#comprar'><span class='glyphicon glyphicon-shopping-cart'></span><span class='submit-text'> Comprar</span></a>";
                     };           
 
                     echo '</div>';

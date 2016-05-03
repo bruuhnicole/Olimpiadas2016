@@ -41,7 +41,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/Olimpiadas2016/produto/codigo/index.php#modalidade">Modalidades</a></li>
                     <li><a href="/Olimpiadas2016/produto/codigo/index.php#calendario">Calendário</a></li>
-                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#bh">BH</a></li>                    
+                    <li><a href="/Olimpiadas2016/produto/codigo/index.php#bh">BH</a></li>
                     <?php if (!isset($_SESSION["login"])) {
                         echo '<li><a class="link-login" href="/Olimpiadas2016/produto/codigo/usuario/login.php#login">Login</a></li>';
                     } else {
@@ -53,8 +53,7 @@
                                 <li role="separator" class="divider"></li>';
                         }
 
-                       $menuUsuario .= '<li><a href="/Olimpiadas2016/produto/codigo/ingressos/comprar.php#comprar"><span class="glyphicon glyphicon-credit-card"></span>&emsp;Comprar Ingressos</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&emsp;Meu Carrinho</a></li>
+                       $menuUsuario .= '<li><a href="/Olimpiadas2016/produto/codigo/#calendario"><span class="glyphicon glyphicon-credit-card"></span>&emsp;Comprar Ingressos</a></li>
                                 <li><a href="/Olimpiadas2016/produto/codigo/usuario/relatorio.php#relatorio"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Emitir Relatórios</a></li>
                                 <li><a href="/Olimpiadas2016/produto/codigo/usuario/editar.php#editar"><span class="glyphicon glyphicon-user"></span>&emsp;Meus dados</a></li>
                                 <li role="separator" class="divider"></li>
@@ -62,7 +61,7 @@
                             </ul>';
 
                         echo $menuUsuario;
-                    } ?>                    
+                    } ?>
                 </li>
                 <li><a style="background-color:lightblue;" href="/Olimpiadas2016/produto/codigo/faq.php#faq">FAQ</a></li>
             </ul>
