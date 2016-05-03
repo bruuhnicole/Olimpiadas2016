@@ -91,16 +91,16 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="horario">Horário: </label>
-                    <input style="width:115px;" class="form-control" type="time" name="horario" placeholder="hh:mm">
+                    <input style="width:115px;" class="form-control" type="time" name="horario" placeholder="hh:mm" required>
                     <label>Data de inicio: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataInicio" placeholder="dd/mm/yyyy">
+                    <input style="width:160px;" class="form-control" type="date" name="dataInicio" placeholder="dd/mm/yyyy" required>
                     <label>Data de fim: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataFim" placeholder="dd/mm/yyyy">
+                    <input style="width:160px;" class="form-control" type="date" name="dataFim" placeholder="dd/mm/yyyy" required>
                     <label for="ingresso">Quantidade de ingressos: </label>
-                    <input style="width:70px;" class="form-control" type="number" name="ingresso">
+                    <input style="width:70px;" class="form-control" type="number" name="ingresso" required>
 
                     <label for="valor">Valor do ingresso: </label>
-                    <input style="width:150px;" class="form-control" type="number" name="valor">
+                    <input style="width:150px;" class="form-control" type="number" name="valor" required>
                 </div>
             </fieldset>
 
@@ -124,11 +124,11 @@ $conn->close();
                 <legend>Descrição da localidade</legend>
                 <div class="form-group">
                     <label for="rua">Local:</label>
-                    <input style="width:400px;" class="form-control" type="text" name="local">
+                    <input style="width:400px;" class="form-control" type="text" name="local" required>
                 </div>
                 <div class="form-group">
                     <label for="cidade">Cidade: </label>
-                    <input style="width:300px;" class="form-control" type="text" name="cidade">
+                    <input style="width:300px;" class="form-control" type="text" name="cidade" required>
                 </div>
                 
             </fieldset>
