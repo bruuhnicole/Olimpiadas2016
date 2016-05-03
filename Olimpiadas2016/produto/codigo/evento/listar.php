@@ -42,7 +42,7 @@ $result = $conn->query($sql);
                                         echo "<td>".$row['descricao']."</td>";
                                         echo "<td>".$row['data']."</td>"; 
                                         echo "<td>".$row['horario']."</td>"; 
-                                        echo "<td><a href='./editar.php#editar' class='btn btn-success'><span class='glyphicon glyphicon-edit' ></td>";  
+                                        echo "<td><a href='./editar.php?codEvento=".htmlspecialchars($row['codEvento'])."' class='btn btn-success'><span class='glyphicon glyphicon-edit' ></td>";  
                                         echo "<td><a href='./deletar.php?codEvento=".htmlspecialchars($row['codEvento'])."' class='btn btn-danger'><span  class='glyphicon glyphicon-trash'></span></a></td>";                        
                                         echo "<tr>";
                                     }

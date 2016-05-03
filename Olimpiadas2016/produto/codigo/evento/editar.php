@@ -3,7 +3,11 @@ include("../include/cabecalho.php");
 include("../include/administrador.php");
 require_once("../include/conexaoBD.php");
 
+
+
 if (!empty($_POST)) {
+
+    $codigoEvento = utf8_encode(htmlspecialchars($_GET['codEvento']));
 
     $modalidade = utf8_encode(htmlspecialchars($_POST['modalidad']));
 
@@ -45,12 +49,12 @@ if (!empty($_POST)) {
         }
         else
         {
-            $sql = "UPDATE EVENTO SET codModalidade = ?, nome = ?, local = ?, cidade = ?, dataInicio = ?, dataFim = ?, qtdIngressos = ?, valor = ? WHERE nome = ?);";
+            $sql = "UPDATE EVENTO SET codModalidade = ?, nome = ?, local = ?, cidade = ?, dataInicio = ?, dataFim = ?, qtdIngressos = ?, valor = ? WHERE codigoEvento = ?);";
                 
             $stmt = $conn->prepare($sql); 
 
             if ($stmt){
-                $stmt->bind_param('isssssids', $codModalidade ,$nome, $local, $cidade, $dataInicio, $dataFim, $ingresso, $valor, $nome);
+                $stmt->bind_param('isssssids', $codModalidade ,$nome, $local, $cidade, $dataInicio, $dataFim, $ingresso, $valor, $codigoEvento);
                     
                 $stmt->execute(); 
 
@@ -67,16 +71,37 @@ if (!empty($_POST)) {
     }
 
 }else{
+        $codigoEvento = utf8_encode(htmlspecialchars($_GET['codEvento']));
 
+        $sql = "select nome, qtdIngressos, valor, descricao, local, cidade, descricao, TIME_FORMAT(dataInicio, '%H:%i') as horario, DATE_FORMAT(dataInicio, '%Y-%m-%d') as dtini, DATE_FORMAT(dataFim, '%Y-%m-%d') as dtfim from evento natural join modalidade where codEvento = ?";
+
+        $stmt = $conn->prepare($sql); 
+        if ($stmt){
+            $stmt->bind_param('i', $codigoEvento);
+            
+            $stmt->execute();   
+            $result = $stmt->get_result(); 
+            $linha = $result->fetch_assoc(); 
+            
+            if ($linha){
     
+               $nome = $linha['nome'];
+               $horario = $linha['horario'];
 
+               $dataInicio = $linha['dtini'];
+               $dataFim = $linha['dtfim'];
 
+               $ingresso = $linha['qtdIngressos'];
+               $valor = $linha['valor'];
+               $modalidade = $linha['descricao'];
 
+               $local = $linha['local'];
+               $cidade = $linha['cidade'];
+            }
     
+        }
+        
 }
-
-
-
 
 ?>
 
@@ -90,30 +115,33 @@ if (!empty($_POST)) {
                 <legend>Dados do evento</legend>
                 <div class="form-group">
                     <label>Nome do Evento</label>
-                    <input type="text" style="width:300px;" class="form-control" name="nome" placeholder="Nome do Evento" required size="50px">
+                    <input type="text" style="width:300px;" class="form-control" value="<?php echo !empty($nome)?$nome:'';?>" name="nome" placeholder="Nome do Evento" required size="50px">
                 </div>
 
                 <div class="form-group">
                     <label for="horario">Horário: </label>
-                    <input style="width:115px;" class="form-control" type="time" name="horario" placeholder="hh:mm">
+                    <input style="width:115px;" class="form-control" value="<?php echo !empty($horario)?$horario:'';?>" type="time" name="horario" placeholder="hh:mm" required>
+                    
                     <label>Data de inicio: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataInicio" placeholder="dd/mm/yyyy">
+                    <input style="width:160px;" class="form-control" value="<?php echo !empty($dataInicio)?$dataInicio:'';?>" type="date" name="dataInicio" placeholder="dd/mm/yyyy" required>
+                    
                     <label>Data de fim: </label>
-                    <input style="width:160px;" class="form-control" type="date" name="dataFim" placeholder="dd/mm/yyyy">
+                    <input style="width:160px;" class="form-control" value="<?php echo !empty($dataFim)?$dataFim:'';?>" type="date" name="dataFim" placeholder="dd/mm/yyyy" required>
+                    
                     <label for="ingresso">Quantidade de ingressos: </label>
-                    <input style="width:70px;" class="form-control" type="number" name="ingresso">
+                    <input style="width:70px;" class="form-control" value="<?php echo !empty($ingresso)?$ingresso:'';?>" type="number" name="ingresso" required>
 
                     <label for="valor">Valor do ingresso: </label>
-                    <input style="width:150px;" class="form-control" type="number" name="valor">
+                    <input style="width:150px;" class="form-control" value="<?php echo !empty($valor)?$valor:'';?>" type="number" name="valor" required>
                 </div>
             </fieldset>
 
-            <!-- Modalidade --> 
+            <!-- Modalidade -->  
             <fieldset>
                 <legend>Esporte</legend>                
                 <div class="form-group">
                     <label for="modalidad">Modalidade:</label>
-                    <select style="width:150px;" class="form-control" name="modalidad">
+                    <select style="width:150px;" class="form-control" value="<?php echo !empty($modalidade)?$modalidade:'';?>"  name="modalidade">
                         <option value= htmlspecialchars("Vôlei de praia") >Vôlei de praia</option>
                         <option value="Voleibol">Voleibol</option>
                         <option value="Ginástica artística">Ginástica artística</option>
@@ -128,11 +156,11 @@ if (!empty($_POST)) {
                 <legend>Descrição da localidade</legend>
                 <div class="form-group">
                     <label for="rua">Local:</label>
-                    <input style="width:400px;" class="form-control" type="text" name="local">
+                    <input style="width:400px;" class="form-control" value="<?php echo !empty($local)?$local:'';?>" type="text" name="local" required>
                 </div>
                 <div class="form-group">
                     <label for="cidade">Cidade: </label>
-                    <input style="width:300px;" class="form-control" type="text" name="cidade">
+                    <input style="width:300px;" class="form-control" value="<?php echo !empty($cidade)?$cidade:'';?>" type="text" name="cidade" required>
                 </div>
                 
             </fieldset>
