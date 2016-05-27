@@ -1,7 +1,15 @@
-﻿<?php
+﻿<?php 
+ob_start();
+$style = '<link href="/Olimpiadas2016/produto/codigo/style/bootstrap-social.css" rel="stylesheet">';
 include("../include/cabecalho.php"); 
 
+if (isset($_SESSION['login'])) {
+    header("Location: ../index.php");
+}
+
 require_once("../include/conexaoBD.php"); 
+
+include_once("google_login.php");
 
 if(isset($_GET['msg'])){
     $msg = $_GET['msg'];
@@ -46,7 +54,7 @@ if (isset($_POST['username'])){
     }
 }
 $conn->close();
-
+ob_end_flush();
 ?>
 <!--Login-->
 <section id="login" class="about">
@@ -77,12 +85,17 @@ $conn->close();
                             </div>
                             <div class="form-group">
                                 <!-- Button -->
-
                                 <div class="col-sm-12 controls">
-                                  <input id="btn-login" type="submit" class="btn btn-success" value="Entrar">
-                              </div>
-                          </div>
-                          <div class="form-group">
+                                <input id="btn-login" type="submit" class="btn btn-success" value="Entrar">
+                                <a href="<?php echo $authUrl ?>" class="btn btn-social btn-google-plus">
+                                    <i class="fa fa-google-plus"></i> Login com Google
+                                </a>
+                                <a class="btn btn-social btn-facebook">
+                                  <i class="fa fa-facebook"></i> Login com Facebook
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-12 control">
                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                     Você ainda não tem uma conta?

@@ -21,6 +21,7 @@
         color: white !important;
     }
     </style>
+    <?php echo @$style ?>
 </head>
 <body>
     <!-- Navigation -->
@@ -48,7 +49,7 @@
                         $menuUsuario = '<li class="dropdown"><a href="#" class="dropdown-toggle link-login" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'
                             .$_SESSION["login"].'&ensp;<span class="caret"></span></a><ul class="dropdown-menu">';
 
-                        if ($_SESSION["perfil"] == "Administrador") {
+                        if (isset($_SESSION["perfil"]) && $_SESSION["perfil"] == "Administrador") {
                             $menuUsuario .= '<li><a href="/Olimpiadas2016/produto/codigo/evento/listar.php#eventos"><span class="glyphicon glyphicon-calendar"></span>&emsp;Gerenciar Eventos</a></li>
                                 <li role="separator" class="divider"></li>';
                         }

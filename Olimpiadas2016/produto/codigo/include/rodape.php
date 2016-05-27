@@ -45,5 +45,6 @@
         });
     });
     </script>
+    <?php echo @$scripts ?>
 </body>
 </html>
