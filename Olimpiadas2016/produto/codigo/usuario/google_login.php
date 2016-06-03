@@ -2,8 +2,8 @@
 include_once("../src/Google_Client.php");
 include_once("../src/contrib/Google_Oauth2Service.php");
 
-$redirectUrl = 'http://localhost/Olimpiadas2016/produto/codigo/usuario/login.php'; 
-$baseUrl = 'http://localhost/Olimpiadas2016/produto/codigo/';
+$redirectUrl = 'http://localhost:8080/Olimpiadas2016/produto/codigo/usuario/login.php'; 
+$baseUrl = 'http://localhost:8080/Olimpiadas2016/produto/codigo/';
 
 $gClient = new Google_Client();
 $gClient->setApplicationName('Olímpiadas 2016');

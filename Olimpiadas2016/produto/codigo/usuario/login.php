@@ -9,6 +9,34 @@ if (isset($_SESSION['login'])) {
 
 require_once("../include/conexaoBD.php"); 
 
+include_once("../inc/facebook.php"); //include facebook SDK
+######### Facebook API Configuration ##########
+$appId = '650489135109317';  //Facebook App ID
+$appSecret = 'c78d3d660c9a4c010607b227b1587e83'; // Facebook App Secret
+$homeurl = 'http://localhost:8080/Olimpiadas2016/produto/codigo/usuario/login.php';  //return to home
+$fbPermissions = 'email';  //Required facebook permissions
+
+//Call Facebook API
+$facebook = new Facebook(array(
+  'appId'  => $appId,
+  'secret' => $appSecret
+
+));
+$fbuser = $facebook->getUser();
+
+if(!$fbuser){
+    $fbuser = null;
+    $loginUrl = $facebook->getLoginUrl(array('redirect_uri'=>$homeurl,'scope'=>$fbPermissions));
+    $_SESSION['facebook'] = "sim";
+}else{
+    $user_profile = $facebook->api('/me?fields=id,first_name,last_name,email,gender,locale,picture');
+    $_SESSION['login'] = $user_profile['email'];
+    $_SESSION['facebook'] = "sim";
+
+    header("Location:http://localhost:8080/Olimpiadas2016/produto/codigo/");
+}
+
+
 include_once("google_login.php");
 
 if(isset($_GET['msg'])){
@@ -90,7 +118,7 @@ ob_end_flush();
                                 <a href="<?php echo $authUrl ?>" class="btn btn-social btn-google-plus">
                                     <i class="fa fa-google-plus"></i> Login com Google
                                 </a>
-                                <a class="btn btn-social btn-facebook">
+                                <a href="<?php echo $loginUrl ?>" class="btn btn-social btn-facebook">
                                   <i class="fa fa-facebook"></i> Login com Facebook
                                 </a>
                             </div>

@@ -26,7 +26,7 @@ include("../include/cabecalho.php");
                             </div>
                               
                             <div class = "caption">
-                                 <a href="#myMapModal" id = "suite" class="btn" data-toggle="modal"><h3><i>Ímpar Suítes Expominas</i></h3></a>
+                                <a style="font-size: 24px;" href="#myMapModal" id = "suite" class="btn" data-toggle="modal"><i class="glyphicon glyphicon-map-marker"></i> Ímpar Suítes Expominas</a>
                                  <p style="text-align: justify;">Com localização privilegiada, situado na região oeste da capital mineira, o Ímpar Suítes Expominas visa atender a crescente demanda local. O novo hotel Ímpar se encontra a apenas 1KM do maior espaço para convenções, feiras congressos e turismo em geral de MG, o Centro de Convenções Expominas.</p>
                             </div>
                         </div>
@@ -36,7 +36,7 @@ include("../include/cabecalho.php");
                             </div>
                               
                             <div class = "caption">
-                                 <a href="#myMapModal" id ="ramada" class="btn" data-toggle="modal"><h3><i>Hotel Ramada Minas Casa</i></h3></a>
+                                 <a style="font-size: 24px;" href="#myMapModal" id = "ramada" class="btn" data-toggle="modal"><i class="glyphicon glyphicon-map-marker"></i> Hotel Ramada Minas Casa</a>
                                  <p style="text-align: justify;">Ramada Encore Minascasa está localizado em Belo Horizonte e oferece quartos modernos com WiFi gratuito. Há um bar no local e o restaurante do Ramada serve refeições à la carte ou buffet. No Ramada Encore, você pode saborear diariamente o buffet de café da manhã com frutas da estação, sucos naturais e pães.</p>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ include("../include/cabecalho.php");
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 <h4 class="modal-title">Modal title</h4>
+                 <h4 class="modal-title">Mapa de Localização</h4>
 
             </div>
             <div class="modal-body">
@@ -62,10 +62,6 @@ include("../include/cabecalho.php");
                         <div id="map-canvas" class=""></div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         <!-- /.modal-content -->

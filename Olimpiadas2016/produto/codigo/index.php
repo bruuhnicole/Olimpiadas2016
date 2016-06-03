@@ -1,5 +1,6 @@
 ﻿<?php
 include("include/cabecalho.php"); 
+
 ?>
 <!-- About -->
 <section id="about" class="about">
